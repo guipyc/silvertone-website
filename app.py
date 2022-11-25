@@ -33,13 +33,13 @@ import io
 
 audio_bytes = audio_recorder()
 if audio_bytes:
-    st.audio(audio_bytes, format='audio/wav')
-    filename = 'audio.pkl'
-with open('audio.pkl', 'rb') as f:
-    audio_lib = pickle.load(f)
-    data, samplerate = librosa.load(io.BytesIO(audio_lib))
-    print(len(data))
-    print(type(data))
+    audio = st.audio(audio_bytes, format='audio/wav')
+    # filename = 'audio.pkl'
+# with open('audio.pkl', 'rb') as f:
+#     audio_lib = pickle.load(f)
+data, samplerate = librosa.load(io.BytesIO(audio))
+    # print(len(data))
+    # print(type(data))
     #pickle.dump(audio_bytes, open(filename, 'wb'))
 #    wav_file = open("audio.mp3", "wb")
 #    wav_file.write(audio_bytes.tobytes())
