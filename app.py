@@ -30,16 +30,32 @@ import io
 #    #ipd.Audio(sample)
 #    #sample,sr = librosa.core.load('audio.mp3')
 #    #ipd.Audio(sample)
+from datetime import datetime
+
+now = datetime.now() # current date and time
+date_time = now.strftime("%Y_%m_%d_%H_%M_%S")
+print("date and time:",date_time)
+
+st.markdown(""" <style>
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+</style> """, unsafe_allow_html=True)
+
+#st.set_page_config(layout="wide")
+
 
 audio_bytes = audio_recorder()
 if audio_bytes:
     st.audio(audio_bytes, format='audio/wav')
-    filename = 'audio.pkl'
-with open('audio.pkl', 'rb') as f:
+    filename = (f'{date_time}audio.pkl')
+    pickle.dump(audio_bytes, open(filename, 'wb'))
+
+with open(filename, 'rb') as f:
     audio_lib = pickle.load(f)
     data, samplerate = librosa.load(io.BytesIO(audio_lib))
-    print(len(data))
-    print(type(data))
+    st.markdown(len(data))
+    st.markdown(type(data))
+
     #pickle.dump(audio_bytes, open(filename, 'wb'))
 #    wav_file = open("audio.mp3", "wb")
 #    wav_file.write(audio_bytes.tobytes())
