@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 import pandas as pd
 import numpy as np
-import librosa
+#import librosa
 from audio_recorder_streamlit import audio_recorder
 from audiorecorder import audiorecorder
 import pickle
@@ -100,18 +100,18 @@ if audio_bytes:
     #storage.child(path_on_cloud).push(audio_bytes)
     pickle.dump(audio_bytes, open(filename, 'wb'))
 
-if filename is not None:
-    with open(filename, 'rb') as f:
-        audio_lib = pickle.load(f)
-        data, samplerate = librosa.load(io.BytesIO(audio_lib))
-        #col1, col2, col3,col4 = st.columns(4)
-        #col1.metric("Happiness", "","34%")
-        #col2.metric("Surprise", "9 %","34")
-        #col3.metric("Neutral", "54%")
-        #col4.metric("Sad", "1%")
-
-        #st.markdown(len(data))
-        os.remove(filename)
+#if filename is not None:
+#    with open(filename, 'rb') as f:
+#        audio_lib = pickle.load(f)
+#        data, samplerate = librosa.load(io.BytesIO(audio_lib))
+#        #col1, col2, col3,col4 = st.columns(4)
+#        #col1.metric("Happiness", "","34%")
+#        #col2.metric("Surprise", "9 %","34")
+#        #col3.metric("Neutral", "54%")
+#        #col4.metric("Sad", "1%")
+#
+#        #st.markdown(len(data))
+#        os.remove(filename)
         #st.markdown(len(data))
         #st.markdown(type(data))
         #st.markdown(filename)
